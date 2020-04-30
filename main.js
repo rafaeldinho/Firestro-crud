@@ -7,8 +7,8 @@ const {PARENT_COLLECTION,PARENT_DOCUMENT,SUB_COLLECTION} = process.env;
 
 //! CREAMOS NUEVA INSTACIA DE FIRESTORE
 const db = new Firestore({
-    projectId: 'xxxx-x-xxxx-xxx',
-    keyFilename: 'yyyy.json',
+    projectId: 'yyyyyylolo',
+    keyFilename: 'xxxxxx',
 });
 
 //!! NUEVA INSTANCIA DE EXPRESS SERVER
@@ -22,11 +22,11 @@ const SODC = db.collection(PARENT_COLLECTION).doc(PARENT_DOCUMENT).collection(SU
 app.post('/', async function (req, res) {
 
     //! EXTREA LIMIT DEL BODY REQUEST
-    let {limit} = req.body;
+    let {limit,lstOC} = req.body;
     let rstList = []
 
     //! OPERACION
-    await SODC.limit(limit).get()
+        await SODC.limit(limit).where("orderNumber", "in",lstOC).get()
         .then((snapshot) => {
             snapshot.forEach((doc) => {
                 rstList.push(doc.data());
@@ -34,6 +34,8 @@ app.post('/', async function (req, res) {
         }).catch((err) => {
             console.log('Error getting documents', err);
         });
+
+
     res.send(rstList);
 });
 
