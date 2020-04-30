@@ -1,0 +1,22 @@
+#DOCUMENTACION GCP
+https://cloud.google.com/firestore/docs/quickstart-servers?hl=es
+
+#ENPOINT
+http://localhost:3000/
+
+#PAYLOAD this can be changed 
+{
+    "limit":1000000000
+}
+
+#INSTALL
+
+USE npm or yarn
+
+npm install
+yarn install
+
+
+#RUNING
+npm start
+yarn start
